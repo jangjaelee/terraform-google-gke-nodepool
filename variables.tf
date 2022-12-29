@@ -37,6 +37,10 @@ variable "cluster_location_type" {
   type        = string
 }
 
+variable "kubernetes_version" {
+  description = "The Kubernetes version of the nodes."
+  type        = string
+}
 
 ####################
 # Node pool basics
@@ -55,6 +59,37 @@ variable "node_locations" {
   description = "The list of zones in which the node pool's nodes should be located. Nodes must be in the region of their regional cluster or in the same region as their cluster's zone for zonal clusters. If unspecified, the cluster-level node_locations will be used."
   type        = list(string)
 }
+
+variable "initial_node_count" {
+  description = "The initial number of nodes for the pool. In regional or multi-zonal clusters, this is the number of nodes per zone. Changing this will force recreation of the resource."
+  type        = number
+}
+
+
+####################
+# Node configuration
+####################
+
+
+####################
+# Automation
+####################
+variable "node_auto_repair" {
+  description = "Whether the nodes will be automatically repaired."
+  type        = bool
+}
+
+variable "node_auto_upgrade" {
+  description = "Whether the nodes will be automatically upgraded."
+  type        = bool
+}
+
+
+
+
+####################
+# Networking
+####################
 
 ####################
 # Security
