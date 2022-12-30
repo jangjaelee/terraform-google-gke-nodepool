@@ -65,10 +65,48 @@ variable "initial_node_count" {
   type        = number
 }
 
+variable "max_pods_per_node" {
+  description = "The maximum number of pods per node in this node pool. default 110 and maximum up to 256"
+  type        = number
+  default     = 110
+}
+
 
 ####################
 # Node configuration
 ####################
+variable "image_type" {
+  description = "The image type to use for this node. Note that changing the image type will delete and recreate all nodes in the node pool.  COS_CONTAINERD or UBUNTU_CONTAINERD."
+  type        = string
+  default     = "COS_CONTAINERD"
+}
+
+variable "machine_type" {
+  description = "The name of a Google Compute Engine machine type. Defaults to e2-medium."
+  type        = string
+}
+
+variable "disk_type" {
+  description = "Type of the disk attached to each node (e.g. 'pd-standard', 'pd-balanced' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'"
+  type        = string
+}
+
+variable "disk_size_gb" {
+  description = "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. Defaults to 100GB."
+  type        = number
+}
+
+variable "enable_gcfs" {
+  description = "If unspecified, GCFS will not be enabled on the node pool. When enabling this feature you must specify image_type = 'COS_CONTAINERD' and node_version from GKE versions 1.19 or later to use it. A machine_type that has more than 16 GiB of memory is also recommended."
+  type        = bool
+  default     = false
+}
+
+variable "enable_gvnic" {
+  description = "Google Virtual NIC (gVNIC) is a virtual network interface. gVNIC is an alternative to the virtIO-based ethernet driver. GKE nodes must use a Container-Optimized OS node image."
+  type        = bool
+  default     = false
+}
 
 
 ####################
