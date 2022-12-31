@@ -23,6 +23,8 @@ resource "google_container_node_pool" "gke_nodepool" {
     machine_type = var.machine_type
     disk_type    = var.disk_type
     disk_size_gb = var.disk_size_gb
+    preemptible  = var.enable_preemptible
+    spot         = var.enable_spot
 
     gcfs_config {
       enabled = var.enable_gcfs
@@ -31,8 +33,9 @@ resource "google_container_node_pool" "gke_nodepool" {
     gvnic {
       enabled = var.enable_gvnic
     }
-  }
 
+    logging_variant = var.logging_variant
+  }
 
 
   ####################

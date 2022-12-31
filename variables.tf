@@ -96,6 +96,18 @@ variable "disk_size_gb" {
   type        = number
 }
 
+variable "enable_preemptible" {
+  description = "Whether the nodes are created as preemptible VM instances."
+  type        = bool
+  default     = false
+}
+
+variable "enable_spot" {
+  description = "Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag."
+  type        = bool
+  default     = false
+}
+
 variable "enable_gcfs" {
   description = "If unspecified, GCFS will not be enabled on the node pool. When enabling this feature you must specify image_type = 'COS_CONTAINERD' and node_version from GKE versions 1.19 or later to use it. A machine_type that has more than 16 GiB of memory is also recommended."
   type        = bool
@@ -106,6 +118,12 @@ variable "enable_gvnic" {
   description = "Google Virtual NIC (gVNIC) is a virtual network interface. gVNIC is an alternative to the virtIO-based ethernet driver. GKE nodes must use a Container-Optimized OS node image."
   type        = bool
   default     = false
+}
+
+variable "logging_variant" {
+  description = "LoggingVariantConfig specifies the behaviour of the logging component. Valid values include DEFAULT and MAX_THROUGHPUT."
+  type        = string
+  default     = "DEFAULT" # DEFAULT or MAX_THROUGHPUT
 }
 
 
