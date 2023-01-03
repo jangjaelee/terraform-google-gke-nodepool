@@ -9,3 +9,7 @@ output "gke_cluster_standard_endpoint" {
 output "gke_cluster_standard_selflink" {
   value = data.google_container_cluster.gke_cluster_standard.self_link
 }
+
+output "boot_disk_kms_key" {
+  value = local.boot_disk_kms_key
+}
